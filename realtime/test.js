@@ -5,7 +5,8 @@ var $interimSpan = document.querySelector('#interim_span');
 
 function start () {
     recognition = new webkitSpeechRecognition();
-    recognition.lang = document.querySelector('#select2').value;
+//    recognition.lang = document.querySelector('#select2').value;
+    recognition.lang = 'ja-JP';
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.onresult = function (e) {
@@ -30,8 +31,7 @@ function stop () {
     nowRecognition = false;
 };
 
-document.querySelector('#btn2').onclick = function () {
-
+function main(){
     // unsupported.
     if (!'webkitSpeechRecognition' in window) {
         alert('Web Speech API には未対応です.');
