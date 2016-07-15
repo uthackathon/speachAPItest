@@ -28,7 +28,7 @@ function start () {
 function stop () {
     recognition.stop();
     nowRecognition = false;
-}
+};
 
 document.querySelector('#btn2').onclick = function () {
 
@@ -40,10 +40,12 @@ document.querySelector('#btn2').onclick = function () {
 
     if (nowRecognition) {
         stop();
+        alert('Web Speech API には未対応です.');
         this.value = '音声認識を継続的に行う';
         this.className = '';
     } else {
         start();
+        alert('Web Speech API には未対応です.');
         this.value = '音声認識を止める';
         this.className = 'select';
     }
