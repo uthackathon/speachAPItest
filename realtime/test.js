@@ -11,13 +11,16 @@ function start () {
     recognition.interimResults = true;
     recognition.onresult = function (e) {
         var finalText = '';
-        var interimText = 'a';
+        var interimText = '';
         for (var i = 0; i < e.results.length; i++) {
             if (e.results[i].isFinal) {
                 finalText += e.results[i][0].transcript;
             } else {
                 interimText += e.results[i][0].transcript;
             }
+        }
+        if(interimText==null){
+            interimText = 'null';
         }
         $interimSpan.textContent = interimText;
         $finalSpan.textContent = finalText;
