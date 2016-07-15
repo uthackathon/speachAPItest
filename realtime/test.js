@@ -31,6 +31,7 @@ function stop () {
     nowRecognition = false;
 };
 
+
 function main(){
     // unsupported.
     if (!'webkitSpeechRecognition' in window) {
@@ -40,12 +41,12 @@ function main(){
 
     if (nowRecognition) {
         stop();
-        alert('Web Speech API には未対応です.');
+        alert('Started');
         this.value = '音声認識を継続的に行う';
         this.className = '';
     } else {
         start();
-        alert('Web Speech API には未対応です.');
+        alert('End');
         this.value = '音声認識を止める';
         this.className = 'select';
     }
