@@ -41,12 +41,12 @@ function main(){
 
     if (nowRecognition) {
         stop();
-        alert('Started');
+        alert('Stop');
         this.value = '音声認識を継続的に行う';
         this.className = '';
     } else {
         start();
-        alert('End');
+        alert('Start');
         this.value = '音声認識を止める';
         this.className = 'select';
     }
