@@ -11,7 +11,7 @@ function start () {
     recognition.interimResults = true;
     recognition.onresult = function (e) {
         var finalText = '';
-        var interimText = '';
+        var interimText = 'a';
         for (var i = 0; i < e.results.length; i++) {
             if (e.results[i].isFinal) {
                 finalText += e.results[i][0].transcript;
