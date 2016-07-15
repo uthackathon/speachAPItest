@@ -34,10 +34,10 @@ function stop () {
 
 function main(){
     // unsupported.
-    if (!'webkitSpeechRecognition' in window) {
-        alert('Web Speech API には未対応です.');
-        return;
-    }
+//    if (!'webkitSpeechRecognition' in window) {
+//        alert('Web Speech API には未対応です.');
+//        return;
+//    }
 
     if (nowRecognition) {
         stop();
