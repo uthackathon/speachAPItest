@@ -4,29 +4,74 @@
     <title>Web Speech API</title>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script>
-window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
-var recognition = new webkitSpeechRecognition();
-recognition.lang = 'ja';
-
-// 録音終了時トリガー
-recognition.addEventListener('result', function(event){
-    var text = event.results.item(0).item(0).transcript;
-    $("#result_text").val(text);
-}, false);
-
-// 録音開始
-function record()
-{
-    recognition.start();
-}
+	window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+	var recognition = new webkitSpeechRecognition();
+	recognition.lang = 'ja';
+	// 録音終了時トリガー
+	// recognition.addEventListener('result', function(event){
+	// 	console.log(event);
+	//     var text = event.results.item(0).item(0).transcript;
+	//     $("#result_text").val(text);
+	// }, false);
+	var startTime;
+	//連続してとる
+	recognition.continuous = true;
+	recognition.onresult = function(event) {
+		var currentTime = new Date();
+		//経過時間
+		var time = (currentTime - startTime)/1000;
+		var length = event.results.length;
+		if (length > 0) {
+			console.log(event.results[length-1][0].transcript);
+		    var text = event.results[length-1][0].transcript;
+	    	$("#result_text").val(text);
+//	    	$("#result_time").val(time);
+		}
+	}
+	recognition.onstart = function() {
+  		console.log('Speech recognition service has started');
+	}
+        
+        recognizer.onend = function(){
+        	console.log('On End');
+                recognizer.start();
+        }
+	
+	recognition.onspeechstart = function() {
+  		console.log('Speech has been detected');
+  		var currentTime = new Date();
+		//経過時間
+		var time = (currentTime - startTime)/1000;
+	    	$("#result_time").val(time);
+	}
+	// 録音開始
+	// recognition.start();
+	function record()
+	{
+	    recognition.start();
+		startTime = new Date();
+		console.log(startTime);
+	}
+	function stop()
+	{
+		var currentTime = new Date();
+	}
 </script>
 </head>
 
-<body>
 
+<body>
+<input type="button" onClick="record()" value="録音開始" />
+<!-- <input type="button" onClick="stop()" value="停止" /> -->
+<br/>
 <textarea id="result_text" cols="100" rows="10">
 </textarea>
 <br />
-<input type="button" onClick="record()" value="録音開始" />
+
+<br/>録音開始より
+<textarea id="result_time" cols="10" rows="1">
+</textarea>
+s<br />
+
 </body>
 </html>
