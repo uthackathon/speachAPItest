@@ -31,12 +31,37 @@
 	recognition.onstart = function() {
   		console.log('Speech recognition service has started');
 	}
-        
-        recognizer.onend = function(){
+        recognition.onstart = function() {
+		console.log('Speech recognition service has started');
+	}
+        recognition.onend = function(){
         	console.log('On End');
-                recognizer.start();
+                recognition.start();
         }
 	
+	recognition.onaudiostart = function() {
+  		console.log('Audio capturing started');
+	}
+	
+	recognition.onsoundstart = function() {
+  		console.log('Some sound is being received');
+	}
+
+	recognition.onspeechstart = function() {
+  		console.log('Speech has been detected');
+	}
+
+	recognition.onspeechend = function() {
+  		console.log('Speech has stopped being detected');
+	}
+
+	recognition.onsoundend = function() {
+  		console.log('Sound has stopped being received');
+	}
+	recognition.onaudioend = function() {
+  		console.log('Audio capturing ended');
+	}
+
 	recognition.onspeechstart = function() {
   		console.log('Speech has been detected');
   		var currentTime = new Date();
