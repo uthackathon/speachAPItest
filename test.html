@@ -31,16 +31,6 @@
   		console.log('Speech recognition abort!');
 		recognition.abort();
 		
-		//recognition.start()を遅延処理
-	   	var huga = 0;
-		var hoge = setInterval(function() {
-//    			console.log(huga);
-    			//終了条件
-    			clearInterval(hoge);
-			recognition.start();
-    			console.log("終わり");
-    		}, 800);
-		
 //	    	$("#result_time").val(time);
 		}
 	}
