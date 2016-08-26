@@ -34,12 +34,12 @@
 		//recognition.start()を遅延処理
 	   	var huga = 0;
 		var hoge = setInterval(function() {
-    			console.log(huga);
-//			recognition.start();
+//    			console.log(huga);
     			huga++;
     			//終了条件
-    			if (huga == 10) {
+    			if (huga == 2) {
     			clearInterval(hoge);
+				recognition.start();
     				console.log("終わり");
     			}
 		}, 800);
