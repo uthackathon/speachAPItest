@@ -4,6 +4,7 @@
     <title>Web Speech API</title>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script>
+
 	window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 	var recognition = new webkitSpeechRecognition();
 	recognition.lang = 'ja';
@@ -28,7 +29,20 @@
 	    	$("#result_text").val(text);
 //		recognition.stop();
 		recognition.abort();
-		recognition.start();
+		
+		//recognition.start()を遅延処理
+	   	var huga = 0;
+		var hoge = setInterval(function() {
+    			console.log(huga);
+			recognition.start();
+    			huga++;
+    			//終了条件
+    			if (huga == 10) {
+    			clearInterval(hoge);
+    				console.log("終わり");
+    			}
+		}, 1000);
+		
 //	    	$("#result_time").val(time);
 		}
 	}
