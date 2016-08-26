@@ -17,6 +17,8 @@
 	//連続してとる
 	recognition.continuous = true;
 	recognition.onresult = function(event) {
+  		console.log('Result');
+
 		var currentTime = new Date();
 		//経過時間
 		var time = (currentTime - startTime)/1000;
