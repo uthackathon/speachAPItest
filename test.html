@@ -27,6 +27,7 @@
 		    var text = event.results[length-1][0].transcript;
 	    	$("#result_text").val(text);
 		recognition.stop();
+		recognition.abort();
 		recognition.start();
 //	    	$("#result_time").val(time);
 		}
