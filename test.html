@@ -18,7 +18,6 @@
 	recognition.continuous = true;
 	recognition.onresult = function(event) {
   		console.log('Result');
-
 		var currentTime = new Date();
 		//経過時間
 		var time = (currentTime - startTime)/1000;
@@ -27,14 +26,13 @@
 			console.log(event.results[length-1][0].transcript);
 		    var text = event.results[length-1][0].transcript;
 	    	$("#result_text").val(text);
+		recognition.stop();
+		recognition.start();
 //	    	$("#result_time").val(time);
 		}
 	}
 	recognition.onstart = function() {
   		console.log('Speech recognition service has started');
-	}
-        recognition.onstart = function() {
-		console.log('Speech recognition service has started');
 	}
         recognition.onend = function(){
         	console.log('On End');
