@@ -102,6 +102,6 @@ function stop()
 function showHistory()
 {
 	for (var i = 0, len = texts.length; i < len; i++) {
-	document.getElementById('history').innerHTML = "<a href='#' class='list-group-item'><span class='badge'>"+texts[i].time+" seconds"+"</span><i class='fa fa-fw fa-calendar'></i>"+texts[i].text+"</a>";
+	document.getElementById('history').innerHTML = "<a href='#' class='list-group-item'><span class='badge'>"+texts[i].time+" seconds"+"</span><i class='fa fa-fw fa-comment'></i>"+texts[i].text+"</a>";
 	}
 }
