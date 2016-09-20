@@ -101,5 +101,7 @@ function stop()
 }
 function showHistory()
 {
-	document.getElementById('history').innerHTML = texts;
+	for (var i = 0, len = texts.length; i < len; i++) {
+	document.getElementById('history').innerHTML += "<a href='#' class='list-group-item'><span class='badge'>"+texts[i].time+"</span><i class='fa fa-fw fa-calendar'></i>"+texts[i].text+"</a>";
+	}
 }
