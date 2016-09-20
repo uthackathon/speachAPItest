@@ -99,3 +99,7 @@ function stop()
 {
 	var currentTime = new Date();
 }
+function showHistory()
+{
+	document.getElementById('history').innerHTML = texts;
+}
