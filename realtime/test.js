@@ -19,6 +19,9 @@ function start () {
                 interimText += e.results[i][0].transcript;
             }
         }
+        if(interimText==null){
+            interimText = 'null';
+        }
         $interimSpan.textContent = interimText;
         $finalSpan.textContent = finalText;
     };
@@ -31,21 +34,22 @@ function stop () {
     nowRecognition = false;
 };
 
+
 function main(){
     // unsupported.
-    if (!'webkitSpeechRecognition' in window) {
-        alert('Web Speech API には未対応です.');
-        return;
-    }
+//    if (!'webkitSpeechRecognition' in window) {
+//        alert('Web Speech API には未対応です.');
+//        return;
+//    }
 
     if (nowRecognition) {
         stop();
-        alert('Web Speech API には未対応です.');
+        alert('Stop');
         this.value = '音声認識を継続的に行う';
         this.className = '';
     } else {
         start();
-        alert('Web Speech API には未対応です.');
+        alert('Start');
         this.value = '音声認識を止める';
         this.className = 'select';
     }
