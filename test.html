@@ -27,6 +27,14 @@
 			console.log(event.results[length-1][0].transcript);
 		    var text = event.results[length-1][0].transcript;
 	    	$("#result_text").val(text);
+
+			fileRef = new File ("/testFile");
+			flag = fileRef.open ("w","","");
+			if (flag)
+			{
+			fileRef.writeln(text);
+			}
+			fileRef.close();
 //		recognition.stop();
   		console.log('Speech recognition abort!');
 		recognition.stop();
