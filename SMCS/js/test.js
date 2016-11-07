@@ -30,7 +30,8 @@ recognition.onresult = function(event,$scope) {
     	console.log(texts);
 	
 	//ローカルストレージに保存?
-	var val = localStrage.getItem("Hashikawa");
+	window.localStorage.setItem("testFile", texts);
+	var val = window.localStrage.getItem("testFile");
 	document.querySelector("#result").innerHTML = val;
 	
     	// $scope.texts = texts;
