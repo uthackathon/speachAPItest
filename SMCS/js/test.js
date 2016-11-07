@@ -29,13 +29,9 @@ recognition.onresult = function(event,$scope) {
    		texts.splice(0,0,object);
     	console.log(texts);
 	
-	fileRef = new File ("/testFile");
-	flag = fileRef.open ("w","","");
-	if (flag)
-	{
-	fileRef.writeln(texts);
-	}
-	fileRef.close();
+	//ローカルストレージに保存?
+	var val = localStrage.getItem("Hashikawa");
+	document.querySelector("#result").innerHTML = val;
 	
     	// $scope.texts = texts;
 		recognition.stop();
