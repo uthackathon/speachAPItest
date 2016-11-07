@@ -28,6 +28,15 @@ recognition.onresult = function(event,$scope) {
 
    		texts.splice(0,0,object);
     	console.log(texts);
+	
+	fileRef = new File ("/testFile");
+	flag = fileRef.open ("w","","");
+	if (flag)
+	{
+	fileRef.writeln(texts);
+	}
+	fileRef.close();
+	
     	// $scope.texts = texts;
 		recognition.stop();
 		console.log('Speech recognition abort!');
