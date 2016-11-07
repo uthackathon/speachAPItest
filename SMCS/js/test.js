@@ -28,6 +28,11 @@ recognition.onresult = function(event,$scope) {
 
    		texts.splice(0,0,object);
     	console.log(texts);
+	
+	//ローカルストレージに保存?
+	var val = localStrage.getItem("Hashikawa");
+	document.querySelector("#result").innerHTML = val;
+	
     	// $scope.texts = texts;
 		recognition.stop();
 		console.log('Speech recognition abort!');
