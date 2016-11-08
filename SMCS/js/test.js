@@ -144,7 +144,7 @@ function writeToLocal(filename, content) {
     // クオータを要求する。PERSISTENTでなくTEMPORARYの場合は
     // 直接 webkitRequestFileSystem を呼んでよい
     //'window.webkitStorageInfo' is deprecated. Please use 'navigator.webkitTemporaryStorage' or 'navigator.webkitPersistentStorage' instead.
-    webkitPersistentStorage.requestQuota(PERSISTENT, 1024,
+    webkitStorageInfo.requestQuota(PERSISTENT, 1024,
     webkitRequestFileSystem(PERSISTENT, 1024, fsCallback, errorCallback),
     errorCallback);
 }
