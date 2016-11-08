@@ -27,6 +27,11 @@ recognition.onresult = function(event,$scope) {
    		object["text"] = text;
    		object["time"] = elapsedTime;
 
+        plaintext = plaintext + text;
+        plaintext = plaintext + elapsedTime;
+
+        console.log(plaintext);
+
    		texts.splice(0,0,object);
     	console.log(texts);
 
@@ -102,13 +107,6 @@ function stop()
 {
 	var currentTime = new Date();
     createDirectory();
-    var texts1 = []
-    for (var object in texts){
-        texts1.append(object["text"]);
-        texts1.append(object["time"]);
-    }
-    // text1 = texts1.join(',');
-    console.log(texts1);
 
 
 	writeToLocal("/test/text", texts);
