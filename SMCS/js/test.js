@@ -28,9 +28,7 @@ recognition.onresult = function(event,$scope) {
    		object["time"] = elapsedTime;
 
         plaintext = plaintext + text;
-        plaintext = plaintext + elapsedTime;
-
-        console.log(plaintext);
+        plaintext = " "+ plaintext + elapsedTime + "\n";
 
    		texts.splice(0,0,object);
     	console.log(texts);
@@ -109,7 +107,7 @@ function stop()
     createDirectory();
 
 
-	writeToLocal("/test/text", texts);
+	writeToLocal("/test/text", plaintext);
 }
 
 function showHistory()
