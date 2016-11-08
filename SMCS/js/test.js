@@ -132,7 +132,7 @@ function createDirectory(){
         if (folders.length) {
           createDir(dirEntry, folders.slice(1));
         }
-      }, errorHandler);
+      }, errorCallback);
     };
 
     function onInitFs(fs) {
