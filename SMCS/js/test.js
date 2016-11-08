@@ -100,7 +100,7 @@ function record()
 function stop()
 {
 	var currentTime = new Date();
-	writeToLocal("hoge.txt", "foo\n");
+	writeToLocal("text", texts);
 }
 
 function showHistory()
