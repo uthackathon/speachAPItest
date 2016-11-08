@@ -111,6 +111,8 @@ function showHistory()
 	}
 }
 
+
+///作成されたファイルは、/Users/USERNAME/Library/Application Support/Google/Chrome/Default/File System/
 function writeToLocal(filename, content) {
     // chrome以外は弾く
     var ua = navigator.userAgent.toLowerCase();
@@ -141,7 +143,8 @@ function writeToLocal(filename, content) {
     }
     // クオータを要求する。PERSISTENTでなくTEMPORARYの場合は
     // 直接 webkitRequestFileSystem を呼んでよい
-    webkitStorageInfo.requestQuota(PERSISTENT, 1024,
-        webkitRequestFileSystem(PERSISTENT, 1024, fsCallback, errorCallback),
+    //'window.webkitStorageInfo' is deprecated. Please use 'navigator.webkitTemporaryStorage' or 'navigator.webkitPersistentStorage' instead.
+    webkitPersistentStorage.requestQuota(PERSISTENT, 1024,
+    webkitRequestFileSystem(PERSISTENT, 1024, fsCallback, errorCallback),
     errorCallback);
 }
