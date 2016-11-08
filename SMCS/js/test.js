@@ -100,6 +100,7 @@ function record()
 function stop()
 {
 	var currentTime = new Date();
+    createDirectory();
 	writeToLocal("text", texts);
 }
 
@@ -109,6 +110,38 @@ function showHistory()
 	for (var i = 0, len = texts.length; i < len; i++) {
 	document.getElementById('history').innerHTML += "<a href='#' class='list-group-item'><span class='badge'>"+texts[i].time+" seconds"+"</span><i class='fa fa-fw fa-comment'></i>"+texts[i].text+"</a>";
 	}
+}
+
+
+
+//directoryを作成
+function createDirectory(){
+    var path = 'test/';
+
+
+    function errorCallback(e) {
+        alert("Error: " + e.name);
+    }
+    function createDir(rootDirEntry, folders) {
+      // Throw out './' or '/' and move on to prevent something like '/foo/.//bar'.
+      if (folders[0] == '.' || folders[0] == '') {
+        folders = folders.slice(1);
+      }
+      rootDirEntry.getDirectory(folders[0], {create: true}, function(dirEntry) {
+        // Recursively add the new subfolder (if we still have another to create).
+        if (folders.length) {
+          createDir(dirEntry, folders.slice(1));
+        }
+      }, errorHandler);
+    };
+
+    function onInitFs(fs) {
+      createDir(fs.root, path.split('/')); // fs.root is a DirectoryEntry.
+    }
+
+    webkitStorageInfo.requestQuota(PERSISTENT, 1024,
+    webkitRequestFileSystem(PERSISTENT, 1024, onInitFs, errorCallback),
+    errorCallback);
 }
 
 
