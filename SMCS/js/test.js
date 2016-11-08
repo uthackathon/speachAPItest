@@ -28,7 +28,7 @@ recognition.onresult = function(event,$scope) {
    		object["time"] = elapsedTime;
 
         plaintext = plaintext + text;
-        plaintext = plaintext + "," + elapsedTime + ",";
+        plaintext = plaintext + "," + elapsedTime + "¥n";
         console.log(plaintext);
    		texts.splice(0,0,object);
     	console.log(texts);
@@ -130,73 +130,4 @@ function handleDownload() {
     } else {
         document.getElementById("download").href = window.URL.createObjectURL(blob);
     }
-}
-
-
-//directoryを作成
-function createDirectory(){
-    var path = 'test/';
-
-
-    function errorCallback(e) {
-        alert("Error: " + e.name);
-    }
-    function createDir(rootDirEntry, folders) {
-      // Throw out './' or '/' and move on to prevent something like '/foo/.//bar'.
-      if (folders[0] == '.' || folders[0] == '') {
-        folders = folders.slice(1);
-      }
-      rootDirEntry.getDirectory(folders[0], {create: true}, function(dirEntry) {
-        // Recursively add the new subfolder (if we still have another to create).
-        if (folders.length) {
-          createDir(dirEntry, folders.slice(1));
-        }
-      }, errorCallback);
-    };
-
-    function onInitFs(fs) {
-      createDir(fs.root, path.split('/')); // fs.root is a DirectoryEntry.
-    }
-
-    webkitStorageInfo.requestQuota(PERSISTENT, 1024,
-    webkitRequestFileSystem(PERSISTENT, 1024, onInitFs, errorCallback),
-    errorCallback);
-}
-
-
-///作成されたファイルは、/Users/USERNAME/Library/Application Support/Google/Chrome/Default/File System/
-function writeToLocal(filename, content) {
-    // chrome以外は弾く
-    var ua = navigator.userAgent.toLowerCase();
-    if (ua.indexOf('chrome') == -1) {
-        alert("This Page is Google Chrome only!");
-    }
-
-    function errorCallback(e) {
-        alert("Error: " + e.name);
-    }
-
-    function fsCallback(fs) {
-        fs.root.getFile(filename, {create: true}, function(fileEntry) {
-            fileEntry.createWriter(function(fileWriter) {
-
-                fileWriter.onwriteend = function(e) {
-                    alert("Success! : " + fileEntry.fullPath);
-                };
-
-                fileWriter.onerror = function(e) {
-                    alert("Failed: " + e);
-                };
-
-                var output = new Blob([content], {type: "text/plain"});
-                fileWriter.write(output);
-            }, errorCallback);
-        }, errorCallback);
-    }
-    // クオータを要求する。PERSISTENTでなくTEMPORARYの場合は
-    // 直接 webkitRequestFileSystem を呼んでよい
-    //'window.webkitStorageInfo' is deprecated. Please use 'navigator.webkitTemporaryStorage' or 'navigator.webkitPersistentStorage' instead.
-    webkitStorageInfo.requestQuota(PERSISTENT, 1024,
-    webkitRequestFileSystem(PERSISTENT, 1024, fsCallback, errorCallback),
-    errorCallback);
 }
