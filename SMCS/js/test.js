@@ -3,6 +3,7 @@ var recognition = new webkitSpeechRecognition();
 recognition.lang = 'ja';
 
 var elapsedTime;
+var fileName;
 //連続してとる
 recognition.continuous = true;
 
@@ -99,6 +100,7 @@ function record()
 {
     recognition.start();
 	startTime = new Date();
+    fileName = startTime.prototype.toDateString()
 	console.log(startTime);
 }
 function stop()
@@ -123,10 +125,10 @@ function handleDownload() {
     var blob = new Blob([ plaintext ], { "type" : "text/plain" });
 
     if (window.navigator.msSaveBlob) { 
-        window.navigator.msSaveBlob(blob, "test.txt"); 
+        window.navigator.msSaveBlob(blob, fileName); 
 
         // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
-        window.navigator.msSaveOrOpenBlob(blob, "test.txt"); 
+        window.navigator.msSaveOrOpenBlob(blob, fileName); 
     } else {
         document.getElementById("download").href = window.URL.createObjectURL(blob);
     }
