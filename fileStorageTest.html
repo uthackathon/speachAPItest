@@ -1,83 +1,11 @@
-<!DOCTYPE html>
-<html><head>
-<meta charset="UTF-8">
-<title>Web Storage Test</title>
-<script>
-var counter = {
-    totalClick : 0,
-    todayClick : 0,
-    msgTxt : "",
-    
-  "init" : function() {
-    var LS_data,
-        SS_data;
-          
-    LS_data = localStorage.getItem("LS_click");
-
-    if(LS_data == null) {
-      this.msgTxt = "はじめまして！ポチポチしてください！！";
-    } else {
-         
-      this.msgTxt = "また来てくれてありがとうございます！<br>今回もポチポチしてください！！";
-      this.totalClick = parseInt(LS_data,10);    
-      document.getElementById("total").innerHTML = "通算のポチポチ " + this.totalClick + "回";
-      SS_data = sessionStorage.getItem("SS_click");
-
-      if(SS_data!=null) {
-        this.todayClick = parseInt(SS_data,10);
-        document.getElementById("todayTotal").innerHTML = "今回のポチポチ " + this.todayClick + "回";
-      }
-    }
-    document.getElementById("msg").innerHTML = this.msgTxt;
-    document.getElementById("allCountView").innerHTML = this.totalClick;
-  },
-  
-  "count" : function() { 
-        
-     this.totalClick += 1;
-     this.todayClick += 1;
-  
-     document.getElementById("allCountView").innerHTML = this.totalClick;
-     document.getElementById("total").innerHTML = "通算のポチポチ " + this.totalClick + "回";
-     document.getElementById("todayTotal").innerHTML = "今回のポチポチ " + this.todayClick + "回";
-
-     localStorage.setItem("LS_click", this.totalClick);
-     sessionStorage.setItem("SS_click", this.todayClick);
-  },
-  
-  "reset" : function() {
-    localStorage.setItem("LS_click", "0");
-    localStorage.setItem("SS_click", "0");
-    document.getElementById("allCountView").innerHTML = 0;
-    document.getElementById("total").innerHTML = "通算のポチポチ 0回";
-    document.getElementById("todayTotal").innerHTML = "今回のポチポチ 0回";
-      
-    this.totalClick = 0;
-    this.todayClick = 0;
-  }
-};
-</script>
-<style>
-body{ margin: 0; padding: 0; }
-#main { width:400px; margin: 0 auto; font-size: 14px; }
-h1 { font-size: 18px; }
-.msg { padding: 10px; border: #999 1px dotted; }
-.allCountView { font-size: 40px; }
-</style>
-</head>
-<body onLoad="counter.init()">
-  <div id="main">
-    <h1>Web Storage Test : ポチポチしてください！</h1>
-    <div class="msg" id="msg"></div>
-    <p>あなたはいままで、合計 <span class="allCountView" id="allCountView">0</span> 回ポチポチしております。</p>
-    
-    <form class="frm"><input type="button" value="ポチポチしてください" onClick="counter.count()"></form>
-    
-    <ul class="countViewLi">
-      <li id="todayTotal">今回のポチポチ 0回</li>
-      <li id="total">通算のポチポチ 0回</li>
-    </ul>
-    <form><input type="button" value="カウンターリセット" onClick="counter.reset()"></form>
-  </div>
-</body>
-</html>
+<script type="text/javascript"> 
+    function startDownload() { 
+        var text = document.getElementById("text").value; 
+        var blob = new Blob([text]); 
+        var url = window.URL.createObjectURL(blob); 
+        document.getElementById(‘download’).href = url; 
+    } 
+</script> 
+<textarea id="text" placeholder="文字を入力してください。"></textarea><br /> 
+<p>下のリンクをクリックしてください</p> 
+<p><a href=# id="download" onclick="startDownload()">ダウンロード</a></p>
