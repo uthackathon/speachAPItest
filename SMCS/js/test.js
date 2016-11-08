@@ -10,6 +10,7 @@ recognition.continuous = true;
 // 	{"time": "0.00", "text":"start"}
 // 	];
 var texts = [];
+var plaintext = "";
 
 recognition.onresult = function(event,$scope) {
 		console.log('Result');
@@ -101,6 +102,15 @@ function stop()
 {
 	var currentTime = new Date();
     createDirectory();
+    var texts1 = []
+    for (var object in texts){
+        texts1.append(object["text"]);
+        texts1.append(object["time"]);
+    }
+    // text1 = texts1.join(',');
+    console.log(texts1);
+
+
 	writeToLocal("/test/text", texts);
 }
 
