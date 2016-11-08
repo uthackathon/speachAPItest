@@ -119,6 +119,19 @@ function showHistory()
 }
 
 
+function handleDownload() {
+    var blob = new Blob([ plaintext ], { "type" : "text/plain" });
+
+    if (window.navigator.msSaveBlob) { 
+        window.navigator.msSaveBlob(blob, "test.txt"); 
+
+        // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
+        window.navigator.msSaveOrOpenBlob(blob, "test.txt"); 
+    } else {
+        document.getElementById("download").href = window.URL.createObjectURL(blob);
+    }
+}
+
 
 //directoryを作成
 function createDirectory(){
