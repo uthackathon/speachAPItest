@@ -101,7 +101,7 @@ function stop()
 {
 	var currentTime = new Date();
     createDirectory();
-	writeToLocal("text", texts);
+	writeToLocal("/test/text", texts);
 }
 
 function showHistory()
