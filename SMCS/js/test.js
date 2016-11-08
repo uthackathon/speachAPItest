@@ -104,10 +104,10 @@ function record()
 function stop()
 {
 	var currentTime = new Date();
-    createDirectory();
+ //    createDirectory();
 
 
-	writeToLocal("/test/text", plaintext);
+	// writeToLocal("/test/text", plaintext);
 }
 
 function showHistory()
