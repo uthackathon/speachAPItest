@@ -27,8 +27,8 @@ recognition.onresult = function(event,$scope) {
    		object["text"] = text;
    		object["time"] = elapsedTime;
 
-        plaintext = plaintext + "," + text;
-        plaintext = plaintext + "," + elapsedTime + "¥n";
+        plaintext = plaintext + text;
+        plaintext = plaintext + "," + elapsedTime + ",";
         console.log(plaintext);
    		texts.splice(0,0,object);
     	console.log(texts);
